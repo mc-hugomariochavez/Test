@@ -24,7 +24,7 @@ namespace Test.Controllers
 			{
 				return NotFound("Clientes no registrados");
 			}
-			return Ok();
+			return Ok(departmentos);
 		}
 
 		[HttpPost("save")]
@@ -35,7 +35,7 @@ namespace Test.Controllers
 			{
 				return NotFound("Clientes no registrados");
 			}
-			return Ok();
+			return Ok(departmento);
 		}
 
 		[HttpPut("update/{id}")]
