@@ -1,4 +1,5 @@
-﻿using Test.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Test.Entities;
 using Test.Models;
 
 namespace Test.DAL.CargoRepository
@@ -29,19 +30,39 @@ namespace Test.DAL.CargoRepository
 			return cargo;
 		}
 
-		public Task<Cargo> DeleteCargoAsync(int cargoId)
+		public async Task<List<Cargo>> GetCargoAsync()
 		{
-			throw new NotImplementedException();
+			List<Cargo> cargos = await _usuarioContext.Cargos.Select(x => x).ToListAsync();
+			if (cargos.Count == 0)
+			{
+				return null;
+			}
+
+			return cargos;
+		}
+		
+
+		public async Task<Cargo> UpdateCargoAsync(int cargoId, Cargo cargoRequest)
+		{
+			var cargo = _usuarioContext.Cargos.Where(x => x.Id == cargoId).FirstOrDefault();
+			cargo.Nombre = cargoRequest.Nombre;
+			cargo.Activo = cargoRequest.Activo;
+			cargo.IdUsuarioCreacion = cargoRequest.IdUsuarioCreacion;
+			cargo.Codigo = cargoRequest.Codigo;
+
+			await _usuarioContext.SaveChangesAsync();
+
+			return cargo;
 		}
 
-		public Task<List<Cargo>> GetCargoAsync()
+		public async Task<Cargo> DeleteCargoAsync(int cargoId)
 		{
-			throw new NotImplementedException();
-		}
+			var cargo = await _usuarioContext.Cargos.Where(x => x.Id == cargoId).FirstOrDefaultAsync();
+			_usuarioContext.Remove(cargo);
 
-		public Task<Cargo> UpdateCargoAsync(int cargoId, Cargo cargo)
-		{
-			throw new NotImplementedException();
+			await _usuarioContext.SaveChangesAsync();
+
+			return cargo;
 		}
 	}
 }

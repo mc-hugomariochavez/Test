@@ -22,7 +22,7 @@ namespace Test.Controllers
 			List<Departmento> departmentos = await _departamentoRepository.GetDepartamentoAsync();
 			if (departmentos.IsNullOrEmpty())
 			{
-				return NotFound("Clientes no registrados");
+				return NotFound("Departamentos no registrados");
 			}
 			return Ok(departmentos);
 		}
@@ -33,29 +33,29 @@ namespace Test.Controllers
 			Departmento departmento = await _departamentoRepository.CreateDepartamentoAsync(deparamentoRequest);
 			if (departmento  == null)
 			{
-				return NotFound("Clientes no registrados");
+				return NotFound("Departamentos no registrados");
 			}
 			return Ok(departmento);
 		}
 
-		[HttpPut("update/{id}")]
+		[HttpPut("update/{departamentoId}")]
 		public async Task<IActionResult> UpdateDepartamento(int departamentoId, [FromBody] Departmento deparamentoRequest)
 		{
 			Departmento departmento = await _departamentoRepository.UpdateDepartamentoAsync(departamentoId, deparamentoRequest);
 			if (departmento == null)
 			{
-				return NotFound("Clientes no registrados");
+				return NotFound("Departamentos no registrados");
 			}
 			return Ok();
 		}
 
-		[HttpPut("delete/{id}")]
+		[HttpDelete("delete/{departamentoId}")]
 		public async Task<IActionResult> DeleteDepartamento(int departamentoId)
 		{
 			Departmento departmento = await _departamentoRepository.DeleteDepartamentoAsync(departamentoId);
 			if (departmento == null)
 			{
-				return NotFound("Clientes no registrados");
+				return NotFound("Departamentos no registrados");
 			}
 			return Ok();
 		}

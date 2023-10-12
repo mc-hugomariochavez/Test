@@ -32,3 +32,26 @@ public class Usuario
 
 }
 
+public class UsuarioRequest
+{
+	[Key]
+	public int Id { get; set; }
+
+	[Required, StringLength(100)]
+	public string PrimerNombre { get; set; }
+
+	[Required, StringLength(100)]
+	public string SegundoNombre { get; set; }
+
+	[Required, StringLength(100)]
+	public string PrimerApellido { get; set; }
+
+	[Required, StringLength(100)]
+	public string SegundoApellido { get; set; }
+
+	[Required]
+	public int IdDepartamento { get; set; }
+	[Required]
+	public int IdCargo { get; set; }
+}
+

@@ -30,20 +30,10 @@ namespace Test.DAL.DepartamentoRepository
 			return departamento;
 		}
 
-		public async Task<Departmento> DeleteDepartamentoAsync(int departamentoId)
-		{
-			var departamento = await _usuarioContext.Departmentos.Where(x => x.Id == departamentoId).FirstOrDefaultAsync();
-			 _usuarioContext.Remove(departamento);
-
-			await _usuarioContext.SaveChangesAsync();
-
-			return departamento;
-		}
-
 		public async Task<List<Departmento>> GetDepartamentoAsync()
 		{
 			List<Departmento> departamentos = await _usuarioContext.Departmentos.Select(x => x).ToListAsync();
-			if(departamentos.Count == 0)
+			if (departamentos.Count == 0)
 			{
 				return null;
 			}
@@ -63,5 +53,19 @@ namespace Test.DAL.DepartamentoRepository
 
 			return departamento;
 		}
+
+		public async Task<Departmento> DeleteDepartamentoAsync(int departamentoId)
+		{
+			var departamento = await _usuarioContext.Departmentos.Where(x => x.Id == departamentoId).FirstOrDefaultAsync();
+			 _usuarioContext.Remove(departamento);
+
+			await _usuarioContext.SaveChangesAsync();
+
+			return departamento;
+		}
+
+		
+
+		
 	}
 }

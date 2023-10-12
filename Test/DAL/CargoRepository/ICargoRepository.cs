@@ -6,7 +6,7 @@ namespace Test.DAL.CargoRepository
 	{
 		Task<List<Cargo>> GetCargoAsync();
 		Task<Cargo> CreateCargoAsync(Cargo cargo);
-		Task<Cargo> UpdateCargoAsync(int cargoId, Cargo cargo);
+		Task<Cargo> UpdateCargoAsync(int cargoId, Cargo cargoRequest);
 		Task<Cargo> DeleteCargoAsync(int cargoId);
 	}
 }
