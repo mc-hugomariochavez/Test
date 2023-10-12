@@ -25,9 +25,21 @@ namespace Test.DAL.UsuariosRepository
 				IdDepartamento = usuarioRequest.IdDepartamento,
 				IdCargo = usuarioRequest.IdCargo,
 			};
-			await _usuarioContext.AddAsync(usuario);
+			try
+			{
+				await _usuarioContext.AddAsync(usuario);
 
-			await _usuarioContext.SaveChangesAsync();
+				await _usuarioContext.SaveChangesAsync();
+
+				usuario.Cargo = await _usuarioContext.Cargos.Where(x => x.Id == usuario.IdCargo).FirstAsync();
+				usuario.Departamento = await _usuarioContext.Departmentos.Where(x => x.Id == usuario.IdDepartamento).FirstAsync();
+
+			}
+			catch (Exception ex)
+			{
+				return null;
+			}
+			
 
 			return usuario;
 		}
