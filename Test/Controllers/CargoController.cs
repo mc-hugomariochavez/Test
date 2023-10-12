@@ -29,7 +29,7 @@ namespace Test.Controllers
 		}
 
 		[HttpPost("save")]
-		public async Task<IActionResult> CreateCargo([FromBody] Cargo cargoRequest)
+		public async Task<IActionResult> CreateCargo([FromBody] CargoRequest cargoRequest)
 		{
 			Cargo cargo = await _cargoRepository.CreateCargoAsync(cargoRequest);
 			if (cargo == null)
@@ -40,7 +40,7 @@ namespace Test.Controllers
 		}
 
 		[HttpPut("update/{cargoId}")]
-		public async Task<IActionResult> UpdateCargo(int cargoId, [FromBody] Cargo cargoRequest)
+		public async Task<IActionResult> UpdateCargo(int cargoId, [FromBody] CargoRequest cargoRequest)
 		{
 			Cargo cargo = await _cargoRepository.UpdateCargoAsync(cargoId, cargoRequest);
 			if (cargo == null)

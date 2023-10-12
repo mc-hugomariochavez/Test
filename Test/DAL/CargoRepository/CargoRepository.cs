@@ -13,16 +13,16 @@ namespace Test.DAL.CargoRepository
 			_usuarioContext = usuarioContext;
 		}
 
-        public async Task<Cargo> CreateCargoAsync(Cargo cargoRequest)
+        public async Task<Cargo> CreateCargoAsync(CargoRequest cargoRequest)
 		{
 			var cargo = new Cargo
 			{
 				Nombre = cargoRequest.Nombre,
 				Activo = cargoRequest.Activo,
 				Codigo = cargoRequest.Codigo,
-				Id = cargoRequest.Id,
 				IdUsuarioCreacion = cargoRequest.IdUsuarioCreacion,
 			};
+
 			await _usuarioContext.AddAsync(cargo);
 
 			await _usuarioContext.SaveChangesAsync();
@@ -42,7 +42,7 @@ namespace Test.DAL.CargoRepository
 		}
 		
 
-		public async Task<Cargo> UpdateCargoAsync(int cargoId, Cargo cargoRequest)
+		public async Task<Cargo> UpdateCargoAsync(int cargoId, CargoRequest cargoRequest)
 		{
 			var cargo = _usuarioContext.Cargos.Where(x => x.Id == cargoId).FirstOrDefault();
 			cargo.Nombre = cargoRequest.Nombre;

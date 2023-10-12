@@ -34,7 +34,12 @@ namespace Test.DAL.UsuariosRepository
 
 		public async Task<List<Usuario>> GetUsuariosAsync()
 		{
-			List<Usuario> usuarios = await _usuarioContext.Usuarios.Select(x => x).ToListAsync();
+			List<Usuario> usuarios = await _usuarioContext.Usuarios
+				.Select(x => x)
+				.Include(x => x.Cargo)
+				.Include(x => x.Departamento)
+				.ToListAsync();
+
 			if (usuarios.Count == 0)
 			{
 				return null;

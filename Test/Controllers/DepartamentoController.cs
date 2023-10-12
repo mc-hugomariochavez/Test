@@ -28,7 +28,7 @@ namespace Test.Controllers
 		}
 
 		[HttpPost("save")]
-		public async Task<IActionResult> CreateDepartamento([FromBody] Departmento deparamentoRequest)
+		public async Task<IActionResult> CreateDepartamento([FromBody] DepartmentoRequest deparamentoRequest)
 		{
 			Departmento departmento = await _departamentoRepository.CreateDepartamentoAsync(deparamentoRequest);
 			if (departmento  == null)
@@ -39,7 +39,7 @@ namespace Test.Controllers
 		}
 
 		[HttpPut("update/{departamentoId}")]
-		public async Task<IActionResult> UpdateDepartamento(int departamentoId, [FromBody] Departmento deparamentoRequest)
+		public async Task<IActionResult> UpdateDepartamento(int departamentoId, [FromBody] DepartmentoRequest deparamentoRequest)
 		{
 			Departmento departmento = await _departamentoRepository.UpdateDepartamentoAsync(departamentoId, deparamentoRequest);
 			if (departmento == null)

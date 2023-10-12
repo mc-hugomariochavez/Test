@@ -13,14 +13,13 @@ namespace Test.DAL.DepartamentoRepository
 			_usuarioContext = usuarioContext;
 		}
 
-        public async Task<Departmento> CreateDepartamentoAsync(Departmento departamentoRequest)
+        public async Task<Departmento> CreateDepartamentoAsync(DepartmentoRequest departamentoRequest)
 		{
 			var departamento = new Departmento
 			{
 				Nombre = departamentoRequest.Nombre,
 				Activo = departamentoRequest.Activo,
 				Codigo = departamentoRequest.Codigo,
-				Id = departamentoRequest.Id,
 				IdUsuarioCreacion = departamentoRequest.IdUsuarioCreacion,
 			};
 			await _usuarioContext.AddAsync(departamento);
@@ -41,7 +40,7 @@ namespace Test.DAL.DepartamentoRepository
 			return departamentos;
 		}
 
-		public async Task<Departmento> UpdateDepartamentoAsync(int departamentoId, Departmento departmentoRequest)
+		public async Task<Departmento> UpdateDepartamentoAsync(int departamentoId, DepartmentoRequest departmentoRequest)
 		{
 			var departamento = _usuarioContext.Departmentos.Where(x => x.Id == departamentoId).FirstOrDefault();
 			departamento.Nombre = departmentoRequest.Nombre;
