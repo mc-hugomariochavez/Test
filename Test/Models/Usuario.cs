@@ -35,8 +35,6 @@ public class Usuario
 
 public class UsuarioRequest
 {
-	[Key]
-	public int Id { get; set; }
 
 	[Required, JsonPropertyName("primer_nombre")]
 	public string PrimerNombre { get; set; }
